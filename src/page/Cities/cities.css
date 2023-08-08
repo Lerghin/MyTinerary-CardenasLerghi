@@ -1,0 +1,8 @@
+#cities{
+display: flex;
+background-color: rgb(143, 53, 90);
+flex-grow: 1;
+text-align: center;
+align-items: center;
+justify-content: center;
+}
