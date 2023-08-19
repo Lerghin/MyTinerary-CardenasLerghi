@@ -1,6 +1,5 @@
 
 
-
 .app-layout{
     min-height: 100vh;
     display:flex ;
@@ -18,7 +17,13 @@
     flex-grow: 1;
   
     }
-
+   
+    
+    @media (max-width: 600px) {
+      .app-footer {
+        margin-bottom: -1px;
+      }
+    }
 
     @media (max-width: 768px) {
         .app-main{

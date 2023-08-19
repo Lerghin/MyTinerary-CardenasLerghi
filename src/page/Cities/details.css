@@ -1,0 +1,56 @@
+.banner{
+    background-color: rgb(9, 44, 44);
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3px;
+    color: White;
+    text-align: center;
+    padding-bottom: 10px;
+   
+   
+}
+.banner-content{
+    padding-bottom: 50px;
+}
+.card-text{
+color: white;
+
+}
+
+
+.banner-image{
+
+width: 50%;
+height: 50%;
+
+}
+.banner-image:hover{
+
+    transform: scale(1.1);
+}
+.card-text:hover{
+    transform: scale(1.2);
+    }
+
+.construction{
+
+margin-top: 50px;
+width: 50%;
+height: 50%;
+}
+@media (max-width: 600px) {
+    .banner {
+        margin-top:150px ;
+      flex-direction: column;
+    }
+  
+    .banner-image {
+
+      width: 100%;
+      height: auto;
+    }
+  }

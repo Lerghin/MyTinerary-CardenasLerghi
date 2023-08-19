@@ -2,15 +2,21 @@
 min-height: 100vh;
 display:flex ;
 flex-direction: column;
+background-color: black;
 }
 
 .app-header, .app-footer{
   height:5vh;
+  background-color: black;
 
 }
 
 .app-main{
 
 flex-grow: 1;
-
+background-color: black;
+}
+.app-container {
+  max-width: 100%;
+  overflow-x: hidden;
 }
