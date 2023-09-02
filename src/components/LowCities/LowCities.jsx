@@ -4,9 +4,11 @@ import '../LowCities/lowcities.css';
 
 const LowCities = ({ data }) => {
   const { _id, name, image, population, currency, slogan, touristSites, socialStruggles } = data;
+const handlerView= ()=>{
 
+}
   return (
-    <div key={data.id} className="card border-secondary pt-3 col-10 col-md-5 col-xl-3  grow-on-hover">
+    <div key={data._id} className="card border-secondary pt-3 col-10 col-md-5 col-xl-3  grow-on-hover">
       <img className="card-img-top w-70 h-50 same-height-img" src={image} alt={name} />
       <div className="card-body d-flex flex-column">
         <h4 className="card-title">{name}</h4>

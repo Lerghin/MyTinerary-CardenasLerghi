@@ -9,8 +9,33 @@ flex-direction: column;
 width:100%;
 }
 
+
+  
+
+  
+#finder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 2;
+
+}
+h2{
+    text-align:center;
+}
+input{
+    background-color:transparent ;
+    color: aliceblue;
+    border-color:  white;
+    border-radius: 10px;
+
+}
 #search{
 
+    text-align: center;
+    width: 50%;
+    padding: 2;
     background-color:black;
 }
 aside{

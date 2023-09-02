@@ -2,7 +2,7 @@
 min-height: 100vh;
 display:flex ;
 flex-direction: column;
-background-color: black;
+background-color: rgb(17, 116, 161);
 }
 
 .app-header, .app-footer{
@@ -10,6 +10,7 @@ background-color: black;
   background-color: black;
 
 }
+
 
 .app-main{
 

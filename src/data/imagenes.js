@@ -20,5 +20,9 @@ export   const imagenes = [
     { src: "../../../public/imagenes/13.jpeg", alt: "Cape Town" },
    { src: "../../../public/imagenes/14.jpeg", alt: "Sidney" },
     { src: "../../../public/imagenes/15.jpeg", alt: "Rio de Janeiro" }
+    { src: "../../../public/imagenes/pato.jpeg", alt: "Pato lucas" }
+     { src: "../../../public/imagenes/dracula.jpeg", alt: "dracula" }
+  { src: "../../../public/imagenes/porki.jpeg", alt: "porki" }
+
 */
 ]

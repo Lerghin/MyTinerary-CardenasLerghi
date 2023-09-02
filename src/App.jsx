@@ -9,6 +9,8 @@ import Loyaut from './page/Loyaut/Loyaut';
 import Componente404 from './page/Componente404/Componente404';
 import { useEffect, useState } from 'react';
 import Details from './page/Cities/Details';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 
 
@@ -41,9 +43,9 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="app-container">
+    <Provider store={store}>
       <RouterProvider router={router} />
-    </div>
+      </Provider>
   );
 }
 
