@@ -17,8 +17,15 @@ const reducerCities = createReducer(initialState, (builder) =>
     console.log(action);
     const last = [...state.lastCities].filter(city => city.name !== action.payload.name);
     last.unshift(action.payload);
+    console.log(last)
     return {
-      lastCities: last }
+      lastCities: last,
+     ...state, last: action.payload
+      
+    
+    
+    
+    }
     
     
   })

@@ -1,0 +1,101 @@
+.signup-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #0f3443;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+.img-s{
+height: 100px;
+width: 100px;
+
+}
+select{
+  width: 50%;
+  display: flex;
+  gap:1px;
+  flex-wrap: wrap;
+}
+.signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 10px;
+ 
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.signup-button {
+  padding: 10px;
+  background-color: #007bff;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px;
+  padding-top: 10px;
+}
+
+.google {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.signup-button:hover {
+  background-color: #0056b3;
+}
+
+p {
+  margin-top: 10px;
+  text-align: center;
+  color: black;
+}
+
+p a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 770px) {
+  .signup-container {
+   margin-top: 120px;
+  }
+
+
+
+}
+@media screen and (max-width: 545px) {
+  .signup-container {
+    padding: 10px;
+    margin-top: 180px;
+  }
+
+  .signup-button {
+    margin: 10px;
+  }
+}
+@media screen and (max-width: 425px) {
+  .signup-container {
+   margin-top: 180px;
+  }
+
+
+
+}

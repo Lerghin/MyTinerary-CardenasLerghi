@@ -15,7 +15,7 @@ const Details = () => {
     useEffect(() => {
 
         dispatch(getCityAsync({ id }))
- 
+   
     }, [])
 
     if (loading) {

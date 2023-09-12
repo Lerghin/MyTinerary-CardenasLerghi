@@ -15,13 +15,14 @@ const Cities = () => {
   //const [cities, setCities] = useState([]);
   //const [citiesAux, setCitiesAux] = useState([]);
   const dispatch = useDispatch();
-  const { loading, cities,  filtered } = useSelector((store) => store.cities);
+  const { loading, cities} = useSelector((store) => store.cities);
+  const [notFound, setNotFound] = useState(false);
   
 
   useEffect(() => {
     if ( cities && cities.length === 0) {
       dispatch(getCitiesAsync());
-     
+
     }
   }, []);
 
@@ -62,15 +63,23 @@ const Cities = () => {
 function HandlerSearch(event) {
 
   if (event?.key === "Enter" || event.type === "click") {
- dispatch(filter( inputRef.current.value, cities))
-   
-  }else if (inputRef.current.value === "") {
+    const filteredCities = dispatch(filter(inputRef.current.value, cities));
+    if (filteredCities.length ===0) {
+      setNotFound(true);
+     
+    } else {
+      dispatch(filter(inputRef.current.value, cities));
+      setNotFound(false);
+    }
+  } else if (inputRef.current.value === "") {
     dispatch(getCitiesAsync());
-  }if (event?.key === "Escape") {
-    inputRef.current.value = ''
+  } else if (event?.key === "Escape") {
+    inputRef.current.value = "";
     dispatch(getCitiesAsync());
   }
 }
+
+
 
   return (
     <div>
@@ -81,7 +90,9 @@ function HandlerSearch(event) {
           <FcSearch onClick={HandlerSearch} className='w-20px' />
         </label>
       </div>
-
+      <div>
+      {notFound && <div>Lo siento, no encontrado</div>}
+    </div>
       <div className="container">
         <div className="row">
           {Array.isArray(cities) && cities.map(city => (
@@ -89,6 +100,9 @@ function HandlerSearch(event) {
           ))}
         </div>
       </div>
+
+      
+
    
     </div>
   );
