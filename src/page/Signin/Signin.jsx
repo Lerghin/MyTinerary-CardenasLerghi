@@ -1,62 +1,89 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import GoogleButtonLogin from '../../components/GoogleButtonLogin/GoogleButtonLogin';
 import { server } from '../../utils/axios';
 import '../Signin/signin.css';
-import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
-import { signup, login} from '../../store/actions/authActions';
+import { login } from '../../store/actions/authActions';
 import { GoogleLogin } from '@react-oauth/google';
-import { useGoogleLogin } from '@react-oauth/google';
+import jwtDecode from 'jwt-decode';
+import { LS } from '../../utils/LS';
 
 const Signin = () => {
-
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const inputEmail = useRef();
   const inputPass = useRef();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const [data, setData] = useState({
+    email: '',
+    password: '',
+  });
 
+  useEffect(() => {
+    const token = LS.getText('token');
+ 
+
+    if (token) {
+      dispatch(login({ token }));
+      navigate('/cities');
+    }
+  }, [])
 
   const handleSubmit = async () => {
-  
-      const userData = {
-        email: inputEmail.current.value,
-        password: inputPass.current.value,
-      };
-
-      const res = await server.post('/auth/in', userData);
-      console.log(res)
-       dispatch(login(res.data))
-      if (res.status === 200) {
-        alert("You are logged  successfully");
-        navigate('/cities')
-      }
-       
     
-  
+    const userData = {
+      email: inputEmail.current.value,
+      password: inputPass.current.value,
+    };
+
+    const res = await server.post('/auth/in', userData);
+    console.log(res);
+    dispatch(login(res.data));
      
-  }
-
-
-
-
-  const handleSubmitGoogle = async (data) => {
-    const userData = { ...data };
-    if (userData.terms) {
-      delete userData.terms;
-      const res = await server.post('/auth/in', userData);
-      console.log(res)
-      dispatch(login(res.data))
-      if (res.status === 200) {
-        alert("You are logged  successfully");
-        navigate('/cities')
-      }
-       
+    if (res.status === 200) {
+      alert('You are logged in successfully');
+     
+      const { token } = res.data;
+      LS.set('token', token);
+     
+      navigate('/cities');
     
     }
   };
+ 
+
+  const handleGoogleLogin = async (response) => {
+    console.log(response);
+    const infoUser = jwtDecode(response.credential);
+    console.log(infoUser);
+
+    console.log(infoUser.email);
+    setData({
+      email: infoUser.email,
+      password: 'Alicia.0609',
+    });
+
+    const userData = {
+      email: infoUser.email,
+      password: 'Alicia.0609',
+    };
+
+    const res = await server.post('/auth/in', userData);
+    console.log(res);
+    dispatch(login(res.data));
+ 
+    if (res.status === 200) {
+      alert('You are logged in successfully');
+      navigate('/cities');
+      const { token } = res.data;
+      LS.set('token', token);
+
+      navigate('/cities');
+
+    }
+  };
+
+
 
   return (
     <div className="signin-container">
@@ -76,7 +103,7 @@ const Signin = () => {
           placeholder="Password"
           ref={inputPass}
         />
-        <button className="signin-button" onClick={handleSubmit} onSubmit={(e) => e.preventDefault()}>
+        <button className="signin-button" onClick={handleSubmit}>
           Sign in
         </button>
         <p>
@@ -84,11 +111,20 @@ const Signin = () => {
         </p>
       </div>
 
-      <GoogleButtonLogin fn={handleSubmitGoogle} />
-
+      <div className="google">
+        <GoogleLogin
+          clientId="302009379903-lvfvam4poqchau007anb4eqh2oshuoig.apps.googleusercontent.com"
+          buttonText="Sign in with Google"
+          onSuccess={handleGoogleLogin}
+          onFailure={(error) => {
+            console.log('Login Failed:', error);
+          }}
+          useOneTap
+        />
+      </div>
     </div>
   );
 };
 
-export default Signin;
 
+export default Signin;

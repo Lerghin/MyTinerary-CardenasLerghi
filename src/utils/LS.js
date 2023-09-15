@@ -1,15 +1,7 @@
 export const LS = {
 
-getText: (key)=> (
-localStorage.getItem(key)
-
-
-),
-getText: (key)=> (
-    JSON.parse(localStorage.getItem(key))
-   
-   
-   ), 
+   getText: (key) => localStorage.getItem(key),
+   getObject: (key) => JSON.parse(localStorage.getItem(key)),
 rm: (key)=> (
    localStorage.removeItem(key)
    

@@ -1,16 +1,30 @@
-import React from 'react';
+import {useEffect, useState} from 'react';
 import '../Navbar/navbarmain.css';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../../store/actions/authActions';
+import { LS } from '../../utils/LS';
 
-const Navbar = () => {
-  const { user } = useSelector((store) => store.authReducer);
-  const dispatch = useDispatch();
 
-  const handleLogout = () => {
-    dispatch(logoutUser());
-  };
+  const Navbar = () => {
+    const { user } = useSelector((store) => store.authReducer);
+    const dispatch = useDispatch();
+    const [logged, setLogged] = useState(false);
+  
+    const handleLogout = () => {
+      dispatch(logoutUser());
+    };
+  
+    useEffect(() => {
+      const token = LS.getText('token');
+     
+      if (token) {
+        setLogged(true);
+       
+      } else {
+        setLogged(false);
+      }
+    }, [user]);
 
   return (
     <header>
@@ -34,24 +48,27 @@ const Navbar = () => {
                   Cities
                 </Link>
               </li>
-              {user?.photo &&  (
-                <li className="nav-item">
-                  <img src={user.photo} alt="profile photo" className="w-50 h-50 roundede-full" />
-                </li>
-              )}
-              {user?.photo ? (
-                <li className="nav-item">
-                  <button onClick={handleLogout}>
-                    Logout
-                  </button>
-                </li>
-              ) : (
-                <li className="nav-item">
-                  <Link type="button" className="btn btn-dark" to="/signin">
-                    &#128100; Login
-                  </Link>
-                </li>
-              )}
+              {user?.photo && (
+            <li className="navbar-item">
+              <img src={user.photo} alt="User" className="w-50 h-50" />
+            </li>
+          )}
+          {logged ? (
+            
+            <li className="navbar-item">
+         
+              <button onClick={handleLogout} className="navbar-button">
+                Logout
+              </button>
+            </li>
+          ) : (
+            <li className="navbar-item">
+              <Link to="/signin" className="navbar-link">
+                👤 Login
+              </Link>
+            </li>
+          )}
+
             </ul>
           </div>
         </nav>
