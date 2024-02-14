@@ -1,14 +1,9 @@
-import React from 'react'
+
 import NavbarMain from '../../components/Navbar/NavbarMain';
 import Footer from '../../components/Footer/Footer'
 import { Outlet } from 'react-router-dom';
 
-const links= [
-{ value:'#', content:'Cities', id:'1'}
 
-
-
-]
 
 
 

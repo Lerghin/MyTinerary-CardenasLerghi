@@ -25,7 +25,7 @@ const Signin = () => {
 
     if (token) {
       dispatch(login({ token }));
-      navigate('/cities');
+      navigate('/comprar');
     }
   }, [])
 
@@ -46,7 +46,7 @@ const Signin = () => {
       const { token } = res.data;
       LS.set('token', token);
      
-      navigate('/cities');
+      navigate('/comprar');
     
     }
   };
@@ -74,11 +74,11 @@ const Signin = () => {
  
     if (res.status === 200) {
       alert('You are logged in successfully');
-      navigate('/cities');
+      navigate('/comprar');
       const { token } = res.data;
       LS.set('token', token);
 
-      navigate('/cities');
+      navigate('/comprar');
 
     }
   };

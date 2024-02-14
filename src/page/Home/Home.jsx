@@ -1,34 +1,42 @@
-import { Navbar } from "react-bootstrap";
+
 
 import Main from "../../components/Main/Main";
 import  '../Home/home.css';
-//import Loyaut from "../Loyaut/Loyaut";
-import Caroussel from "../../components/Caroussel/Caroussel";
+
+import { CartProvider } from "../../components/context/cart";
+import { useState } from "react";
+import {products as initialProducts} from '../../mocks/products.json';
+import {useFilters}from './../../hooks/useFilters'
+import { Products } from './../../components/Products/Products';
+import { Cart } from "./../../components/Cart/Cart";
 
 const Home = () => {
 
+  const [products]= useState(initialProducts)
+  const {  filterProducts}=useFilters()
+const filteredProducts=filterProducts(products)
   return (
-  
+
   // <Loyaut >
 
     <div className="app-layout">
 
-    <main className="container  app-main">
-     
-     <Main />
-    
-    </main>
-    
-    <section   className="container  app-caroussel">
-
-    <Caroussel />
-    </section>
-
-
-
-    </div>
    
-  // </Loyaut>
+     
+    <CartProvider>
+      <div className="container  app-main" >   
+      <Main/>
+      </div>
+
+ <Products products={filteredProducts}/>
+ <Cart/>
+ </CartProvider>
+    
+    
+  
+    </div>
+ 
+  //</Loyaut>
   )
 }
 

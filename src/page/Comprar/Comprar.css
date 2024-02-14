@@ -1,0 +1,33 @@
+.checkout{
+width: 100%;
+margin-top: 2rem;
+}
+.products-compra{
+
+    margin: 1%;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+  
+}
+.oculto {
+    display: none;
+  }
+a{
+    max-width: 5rem;
+
+   
+}
+.button{
+    display: flex;
+   margin-left: 43%;
+}
+#formulario{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  flex-grow: 1;
+  padding: 1rem;
+  gap: 2rem;
+}

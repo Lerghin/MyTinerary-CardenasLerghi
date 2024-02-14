@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+
 import { Link, useNavigate } from 'react-router-dom';
 import { server } from '../../utils/axios';
 import '../Signup/signup.css';
-import { FaGoogle } from 'react-icons/fa';
+
 import { countries } from '../../data/countries';
-import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
 
 import jwtDecode from 'jwt-decode';
 import { useDispatch } from 'react-redux';
-import {signup, authenticate} from '../../store/actions/authActions'
+import {signup} from '../../store/actions/authActions'
 import { toast } from 'react-toastify';
+import { LS } from '../../utils/LS';
+import { useState } from 'react';
 
 
 
@@ -17,7 +19,7 @@ import { toast } from 'react-toastify';
 const SignUp = () => {
 const dispatch= useDispatch()
 
-  const [isRegistered, setIsRegistered] = useState(false);
+ // const [isRegistered, setIsRegistered] = useState(false);
 
   const [data, setData] = useState({
     name: '',
@@ -53,9 +55,11 @@ const dispatch= useDispatch()
 
         if (res && res.data && res.status === 201) {
           navigate('/cities')
-         
+       
+     
           alert(" You have been registered succesfully :D")
-         
+          const { token } = res.data;
+          LS.set('token', token);
         }
        
        
@@ -255,6 +259,8 @@ const dispatch= useDispatch()
                 phone: '000000000',
                 terms: true
               });
+          
+     
             }}
             onError={() => {
               console.log('Login Failed');
