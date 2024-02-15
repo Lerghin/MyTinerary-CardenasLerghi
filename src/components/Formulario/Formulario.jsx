@@ -1,7 +1,8 @@
 import  { useState } from 'react';
 import './Formulario.css'; 
+import { useNavigate } from 'react-router-dom'; 
 
-const Formulario = () => {
+const Formulario = ({userId}) => {
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [telefono, setTelefono] = useState('');
@@ -9,12 +10,42 @@ const Formulario = () => {
   const [referenciaPago, setReferenciaPago] = useState('');
   const [fechaPago, setFechaPago] = useState('');
   const [metodoPago, setMetodoPago] = useState('');
+  const goHome= useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica para enviar los datos del formulario
-  };
 
+    const data = {
+      nombre,
+      apellido,
+      telefono,
+      cedula,
+      referenciaPago,
+      fechaPago,
+      metodoPago,
+      userId // Incluir el userID en los datos enviados al backend
+    };
+
+    try {
+      const response = await fetch('/api/ventas', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        console.log('Venta realizada con éxito');
+        goHome.push('/home');
+        // Haz algo después de realizar la venta, como redireccionar al usuario
+      } else {
+        console.error('Error al realizar la venta');
+      }
+    } catch (error) {
+      console.error('Error al realizar la venta:', error);
+    }
+  }
   return (
     <form onSubmit={handleSubmit} className="formulario">
       <div className="campo">
@@ -87,6 +118,6 @@ const Formulario = () => {
       <button type="submit">Enviar</button>
     </form>
   );
-};
+  }
 
 export default Formulario;

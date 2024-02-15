@@ -30,7 +30,7 @@ const Navbar = () => {
       <div className="head">
         <nav className="navbar navbar-expand-sm ">
           <div className=" container-fluid">
-            <Link id="main" className="mytinery" href="/">
+            <Link id="main" className="mytinery" to="/home">
               <img
                 src="/imagenes/ebenezer.jpg"
                 alt="Logo"

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import "./Comprar.css";
 import Formulario from "../../components/Formulario/Formulario.jsx";
+import { Link } from "react-router-dom";
 
 function Comprar() {
   const [cartData, setCartData] = useState([]);
@@ -13,8 +14,9 @@ function Comprar() {
   }, []);
 
   const Pagar = () => {
+   
+    document.getElementById("formulario")?.scrollIntoView({ behavior: "smooth", block: "start" });
     setMostrarFormulario(true);
-    document.getElementById("#formulario")?.scrollIntoView({ behavior: "smooth", block: "start" });
     console.log(mostrarFormulario) ;
   };
 
@@ -22,19 +24,23 @@ function Comprar() {
     <>
       <section className="checkout">
         {cartData && cartData.length > 0 && (
-          <div>
-            <h2>Resumen de Compras</h2>
-
-            <ul className="products">
+          <div >
+            <div className="title"><h2> Resumen de Compras</h2> </div>
+            
+          <div className="products ">
+            <ul   className="">
               {cartData.map((product) => (
-                <main key={product.id} className="products ">
+                <main key={product.id}  >
                   <div>
                     <li>
                       <img src={product.thumbnail} alt={product.title} />
                       <div>
                         <strong>{product.title}</strong>
-                        <br />
-                        <strong>Cantidad: {product.quantity}</strong> <br />
+                      </div>
+                      <div>
+                        <strong>Cantidad: {product.quantity}</strong> 
+                        </div>
+                        <div>
                         -${product.price}
                       </div>
                     </li>
@@ -42,7 +48,7 @@ function Comprar() {
                 </main>
               ))}
             </ul>
-
+            </div>
             <h2>
               {" "}
               <b> Total: $</b>
@@ -62,14 +68,21 @@ function Comprar() {
           >
             Pagar
           </a>
+    
+          <Link type="button" className="btn btn-danger" to="/home" >
+          Atras
+        </Link>
+      
         </div>
       </section>
-      <section
-        id="formulario"
-        className={`formulario${mostrarFormulario ? "" : " oculto"}`}
-     >
-        <h2>Formulario de Pago</h2>
-        <Formulario />
+      <br /> <br />
+      <section id="formulario" className={`formulario${mostrarFormulario ? "" : " oculto"}`}>
+        {mostrarFormulario && (
+          <>
+            <h2>Formulario de Pago</h2>
+            <Formulario />
+          </>
+        )}
       </section>
     </>
   );

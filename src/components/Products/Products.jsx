@@ -22,7 +22,10 @@ const checkProductInCart= product=>{
             <li >
                 <img src={product.thumbnail} alt={product.title} />
                 <div>
-                    <strong>{product.title}</strong> -${product.price}
+                    <strong>{product.title}</strong> 
+                </div>
+                <div>
+                -${product.price}
                 </div>
                 <div>
                     <button style={{

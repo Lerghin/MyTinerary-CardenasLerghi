@@ -1,8 +1,11 @@
 .products {
   width: 100%;
+
   display: flex;
   justify-content: center;
   align-items: center;
+  max-height: 50%;
+  
  
 }
 
@@ -20,13 +23,15 @@
   ); 
   gap: 1rem;
   flex-wrap: wrap;
- 
+
   
 }
 
 .products li {
   display: flex;
   flex-direction: column;
+  width:100%;
+
   gap: 1rem;
   box-shadow: 0 0 10px 10px rgba(0, 0, 0, .1);
   border-radius: 4px;
