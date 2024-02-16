@@ -35,7 +35,7 @@ const handleChangeCategory= (event)=>{
         <input type="range" 
         id={minPriceFilterId}
          min="0"
-         max="1000"
+         max="300"
          onChange={handleChangeMinPrice} 
          value={filters.minPrice}/>
          <span>${filters.minPrice}</span>
@@ -51,8 +51,20 @@ const handleChangeCategory= (event)=>{
         <label htmlFor={categoryFilterId}> Categoría </label>
         <select id={categoryFilterId}  onChange={handleChangeCategory}>
             <option value="all">Todas</option>
-            <option value="laptops">Portatiles</option>
-            <option value="smartphones">Celulares</option>
+            <option value="kit">Kit</option>
+            <option value="bombas">Bombas</option>
+            <option value="bases">Bases</option>
+            <option value="embrague">Embragues</option>
+            <option value="tapas">Tapas</option>
+            <option value="cigueñal">Cigueñal</option>
+            <option value="bujes">Bujes</option>
+            <option value="mozo">Mozos</option>
+            <option value="sensors">Sensores</option>
+            <option value="valvulas">Valvulas</option>
+            <option value="valvulas">Purificadores</option>
+            <option value="tomas">Tomas de Agua</option>
+            <option value="alternador">Alternadores</option>
+
 
 
         </select>

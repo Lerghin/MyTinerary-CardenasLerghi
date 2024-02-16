@@ -42,7 +42,7 @@ const Signin = () => {
     dispatch(login(res.data));
      
     if (res.status === 200) {
-      alert('You are logged in successfully');
+      alert('Te has logueado Satisfactoriamente');
      
       const { token } = res.data;
       LS.set('token', token);
@@ -88,7 +88,7 @@ const Signin = () => {
 
   return (
     <div className="signin-container">
-      <h2>Login with</h2>
+      <h2>Ingresar</h2>
       <div className="signin-form">
         <input
           className="signin-button"
@@ -105,10 +105,10 @@ const Signin = () => {
           ref={inputPass}
         />
         <button className="signin-button" onClick={handleSubmit}>
-          Sign in
+          Ingresar
         </button>
         <p>
-          Don't have an account? <Link to="/signup">Sign up</Link>
+          No tienes cuenta? <Link to="/signup">Registrate</Link>
         </p>
       </div>
 

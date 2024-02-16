@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './Formulario.css'; 
 import { server } from '../../utils/axios';
+import { useNavigate } from 'react-router';
 
 const Formulario = ({ userId }) => {
     const [nombre, setNombre] = useState('');
@@ -10,7 +11,9 @@ const Formulario = ({ userId }) => {
     const [referenciaPago, setReferenciaPago] = useState('');
     const [fechaPago, setFechaPago] = useState('');
     const [metodoPago, setMetodoPago] = useState('');
-  
+  const navigate= useNavigate();
+
+ 
     const handleSubmit = async (e) => {
       e.preventDefault();
   
@@ -35,6 +38,7 @@ const Formulario = ({ userId }) => {
         if (response.status===200) {
           alert('Compra realizada con éxito');
           console.log('Compra realizada con éxito');
+          navigate('/home')
           
         } else {
           console.error('Error al realizar la compra');

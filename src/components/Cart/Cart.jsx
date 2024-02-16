@@ -25,7 +25,7 @@ function CartItem ({ thumbnail, price, title, quantity, addToCart }) {
         alt={title}
       />
       <div>
-        <strong>{title}</strong> - ${price}
+        <strong>{title}</strong>${price}
       </div>
 
       <footer>

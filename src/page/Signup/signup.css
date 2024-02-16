@@ -5,11 +5,16 @@
   margin-left: 30rem ;
 
   padding: 20px;
-  background: #0f3443;
+ 
   border-radius: 5px;
   margin-top: 10px;
   margin-bottom: 50px;
-  color:white
+
+}
+.input-sign{
+  border-radius: 10px;
+  background-color: aliceblue;
+  color:black
 }
 .img-s{
 height: 100px;
@@ -29,6 +34,7 @@ select{
 
 .form-group {
   margin-bottom: 10px;
+  color:white
  
 }
 
@@ -40,13 +46,13 @@ input,
 select {
   padding: 5px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #1a1818;
 }
 
 .signup-button {
   padding: 10px;
   background-color: #007bff;
-  color: black;
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -68,7 +74,7 @@ select {
 p {
   margin-top: 10px;
   text-align: center;
-  color: black;
+
 }
 
 p a {

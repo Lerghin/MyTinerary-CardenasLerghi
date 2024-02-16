@@ -25,11 +25,10 @@ const dispatch= useDispatch()
     name: '',
     lastName: '',
     email: '',
+    dni: '',
     password: '',
     country: '',
-    photo: 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fe7.pngegg.com%2Fpngimages%2F96%2F344%2Fpng-clipart-user-profile-instagram-computer-icons-insta-head-silhouette.png&tbnid=_SwuLlc6rEQpfM&vet=12ahUKEwjt1MSYoJSBAxUvYzABHZIfCXEQMygAegQIARBS..i&imgrefurl=https%3A%2F%2Fwww.pngegg.com%2Fes%2Fpng-nsizj&docid=GfUmvCB48JnuqM&w=900&h=900&q=usuario%20blanco&hl=es-419&ved=2ahUKEwjt1MSYoJSBAxUvYzABHZIfCXEQMygAegQIARBS',
-    birth_date: '',
-    age: '',
+    photo: 'https://i.postimg.cc/G2Jy4YNm/smile.png',
     phone: '',
     terms: false
   });
@@ -50,14 +49,15 @@ const dispatch= useDispatch()
       if (userData.terms) {
         delete userData.terms;
         const res = await server.post('/auth/up', userData);
+        const { userData: { _id } } = res.data;
         console.log(res);
        dispatch(signup(res.data))
 
         if (res && res.data && res.status === 201) {
-          navigate('/cities')
+          navigate('/comprar',  { state: { userId: _id } })
        
      
-          alert(" You have been registered succesfully :D")
+          alert(" Te has registrado Satisfactioriamente, Bienvenido")
           const { token } = res.data;
           LS.set('token', token);
         }
@@ -108,12 +108,12 @@ const dispatch= useDispatch()
 
 
     <div className="signup-container">
-      <h2>Register:</h2>
+      <h2>Registro:</h2>
       <form className="signup-form" onSubmit={handleSubmitData}>
         <div className="form-group">
-          <label htmlFor="firstName">First Name:</label>
+          <label htmlFor="firstName">Nombre:</label>
           <input
-           className='container-fluid'
+           className='container-fluid input-sign'
             type="text"
             id="firstName"
             name="name"
@@ -123,9 +123,9 @@ const dispatch= useDispatch()
           />
         </div>
         <div className="form-group">
-          <label htmlFor="lastName">Last Name:</label>
+          <label htmlFor="lastName">Apellido:</label>
           <input
-           className='container-fluid'
+           className='container-fluid input-sign'
             type="text"
             id="lastName"
             name="lastName"
@@ -135,9 +135,21 @@ const dispatch= useDispatch()
           />
         </div>
         <div className="form-group">
+          <label htmlFor="dni">Cedula:</label>
+          <input
+            type="number"
+            id="dni"
+            name="dni"
+           className='container-fluid input-sign'
+            value={data.dni}
+            onChange={handleChangeData}
+            required
+          />
+        </div>
+        <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
-           className='container-fluid'
+           className='container-fluid input-sign'
             type="email"
             id="email"
             name="email"
@@ -147,10 +159,10 @@ const dispatch= useDispatch()
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">Contraseña:</label>
           <input
             type="password"
-            className='container-fluid'
+            className='container-fluid input-sign'
             id="password"
             name="password"
             value={data.password}
@@ -159,15 +171,15 @@ const dispatch= useDispatch()
           />
         </div>
         <div className="form-group">
-          <label htmlFor="country">Country:</label>
-          <select className='container-fluid'
+          <label htmlFor="country">País de Residencia:</label>
+          <select className='container-fluid input-sign'
             id="country"
             name="country"
             value={data.country}
             onChange={handleChangeData}
             required
           >
-            <option value="">Select Country</option>
+            <option value="">Selecione País</option>
             {countries.map((country) => (
               <option key={country.name} value={country.name}>
                 {country.name}
@@ -176,48 +188,26 @@ const dispatch= useDispatch()
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="photo">Photo:</label>
+          <label htmlFor="photo">Foto:</label>
           <input
             type="file"
             id="photo"
-            className='container-fluid'
+            className='container-fluid input-sign'
             accept="image/*"
             onChange={handlePhotoChange}
             
           />
         </div>
         <div className="form-group">
-          <label htmlFor="preview-image">Preview Image:</label>
+          <label htmlFor="preview-image">Preview Foto:</label>
           <img id="preview-image" src={data.photo} alt="Preview"  className='img-s'/>
         </div>
+       
+       
         <div className="form-group">
-          <label htmlFor="birthDate">Birth Date:</label>
+          <label htmlFor="phone">Telefono:</label>
           <input
-           className='container-fluid'
-            type="date"
-            id="birthDate"
-            name="birth_date"
-            value={data.birth_date}
-            onChange={handleChangeData}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="age">Age:</label>
-          <input
-            type="number"
-            id="age"
-            name="age"
-           className='container-fluid'
-            value={data.age}
-            onChange={handleChangeData}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="phone">Phone:</label>
-          <input
-           className='container-fluid'
+           className='container-fluid input-sign'
 
             type="tel"
             id="phone"
@@ -228,7 +218,7 @@ const dispatch= useDispatch()
           />
         </div>
         <div className="form-group">
-          <label htmlFor="terms">I agree to the Terms and Conditions</label>
+          <label htmlFor="terms">Acepto los Terminos y Condiciones</label>
           <input
             type="checkbox"
             id="terms"
@@ -269,11 +259,11 @@ const dispatch= useDispatch()
 
         </div>
         <button type="submit" className="signup-button">
-          Sign up
+         Registrar
         </button>
       </form>
       <p>
-        Already have an account? <Link to="/signin">Sign in</Link>
+        Ya tienes una Cuenta? <Link to="/signin">Ingresar</Link>
       </p>
     </div>
   );

@@ -15,7 +15,7 @@ const checkProductInCart= product=>{
         <main className='products'>
             
         <ul>
-        {products.slice(0,10).map(product=>{
+        {products.slice(0,30).map(product=>{
         const isProductIncart= checkProductInCart(product)
         return ( 
          <div key={product.id}  >
@@ -25,7 +25,10 @@ const checkProductInCart= product=>{
                     <strong>{product.title}</strong> 
                 </div>
                 <div>
-                -${product.price}
+                    <strong>{product.description}</strong> 
+                </div>
+                <div>
+                ${product.price}
                 </div>
                 <div>
                     <button style={{
