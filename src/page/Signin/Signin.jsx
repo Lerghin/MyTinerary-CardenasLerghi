@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import  { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { server } from '../../utils/axios';
 import '../Signin/signin.css';
@@ -37,6 +37,7 @@ const Signin = () => {
     };
 
     const res = await server.post('/auth/in', userData);
+    const { userData: { _id } } = res.data;
     console.log(res);
     dispatch(login(res.data));
      
@@ -46,7 +47,7 @@ const Signin = () => {
       const { token } = res.data;
       LS.set('token', token);
      
-      navigate('/comprar');
+      navigate('/comprar',  { state: { userId: _id } });
     
     }
   };

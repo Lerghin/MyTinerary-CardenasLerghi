@@ -38,7 +38,7 @@ const ProtectedRoute = ()=>{
   if(status==="online"){
     return<Outlet/>
   }
-  return <Navigate to='/signin'/>
+  return <Navigate to='/home'/>
     
 }
 
