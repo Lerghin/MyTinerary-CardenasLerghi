@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import './Formulario.css'; 
 import { server } from '../../utils/axios';
-import { useNavigate } from 'react-router';
+//import { useNavigate } from 'react-router';
+
+
 
 const Formulario = ({ userId }) => {
     const [nombre, setNombre] = useState('');
@@ -11,12 +13,13 @@ const Formulario = ({ userId }) => {
     const [referenciaPago, setReferenciaPago] = useState('');
     const [fechaPago, setFechaPago] = useState('');
     const [metodoPago, setMetodoPago] = useState('');
-  const navigate= useNavigate();
-
+ // const navigate= useNavigate();
+  
  
     const handleSubmit = async (e) => {
       e.preventDefault();
   
+
       const data = {
         nombre,
         apellido,
@@ -28,17 +31,21 @@ const Formulario = ({ userId }) => {
         userId, // Aquí se incluye el userId en los datos enviados al servidor
       };
   
+
+     
       try {
         const response = await server.post('/ventas', data, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
-          }
+          }, responseType: 'blob'
         });
   
-        if (response.status===200) {
+        if (response.status === 200 && response.headers['content-type'] === 'application/pdf') {
           alert('Compra realizada con éxito');
           console.log('Compra realizada con éxito');
-          navigate('/home')
+          const blob = new Blob([response.data], { type: 'application/pdf' });
+          const url = URL.createObjectURL(blob);
+          window.open(url);
           
         } else {
           console.error('Error al realizar la compra');
@@ -56,6 +63,7 @@ const Formulario = ({ userId }) => {
           <input
             type="text"
             id="nombre"
+    
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
           />
