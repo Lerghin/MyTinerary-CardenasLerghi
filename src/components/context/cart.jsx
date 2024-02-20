@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import { createContext,  } from "react";
-import { cartReducer, cartInitialState } from "../../hooks/reducers/cart";
+import { cartReducer, cartInitialState } from "../../hooks/reducers/cart.js";
 
 
 //crear contexto
@@ -12,6 +12,7 @@ function useCartReducer (){
 const addToCart = product=> dispatch({
 type: 'ADD_TO_CART',
 payload: product
+
 })
 
 

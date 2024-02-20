@@ -78,3 +78,13 @@ a{
   padding: 1rem;
   gap: 2rem;
 }
+aside{
+  display: flex;
+  width:100%;
+justify-content: space-evenly;
+}
+
+.zelle{
+margin-left: 200px;
+
+}

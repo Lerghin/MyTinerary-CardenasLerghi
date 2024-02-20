@@ -32,12 +32,12 @@ const Navbar = () => {
           <div className=" container-fluid">
             <Link id="main" className="mytinery" to="/home">
               <img
-                src="/imagenes/ebenezer.jpg"
+                src="/imagenes/barba.jpeg"
                 alt="Logo"
                 id="logo"
                 className="img-fluid"
               />
-              Repuestos Ebenezer C.A.
+              Barba Negra Restaurant´s
             </Link>
           </div>
           <div className="navbar-nav">

@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  max-height: 50%;
+  max-height: 100%;
   
  
 }
@@ -12,12 +12,13 @@
 .products ul {
  
   display: grid; /* te deja en la lista*/
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(10, 1fr);
   width: 80%;
+ 
  grid-template-columns: repeat(
     auto-fit,
     minmax(
-      250px,
+      350px,
       1fr
     )
   ); 
@@ -26,7 +27,9 @@
 
   
 }
-
+.products li:hover{
+  transform: scale(1.05);
+}
 .products li {
   display: flex;
   flex-direction: column;

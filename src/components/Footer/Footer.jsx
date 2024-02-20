@@ -4,7 +4,7 @@ import '../Footer/footer.css'
 import { FaInstagram } from "react-icons/fa6";
 import { FaMobileAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import { SiFord } from "react-icons/si";
+import { GiPirateFlag } from "react-icons/gi";
 
 //import { useFilters } from "../hooks/useFilters.js";
 //import { useCart } from "../hooks/useCart.js";
@@ -26,14 +26,14 @@ const Footer = () => {
 JSON.stringify(cart, null, 2)
 }
 */}
-  <h2 > <SiFord /></h2> 
+  <h2 > <GiPirateFlag /></h2> 
     <h4>
-      Repuestos Ebenezer C.A. 
+      Barba Negra Restaurant´s 
     </h4>
    
-    <span><FaMobileAlt /> <Link to="https://api.whatsapp.com/send/?phone=%2B584123675863&text&type=phone_number&app_absent=0"> 04241946683</Link></span>
+    <span><FaMobileAlt /> <Link to="https://api.whatsapp.com/send?phone=584243523922&text=Hola%20Lerghin%20%F0%9F%98%98"> 04243523922</Link></span>
     <br />
-    <span><FaInstagram /><Link to="https://www.instagram.com/repuestos_ebenezer/?hl=es"> REPUESTOS_EBENEZER
+    <span><FaInstagram /><Link to="https://www.instagram.com/lerghin1/"> BarbaNegraIG
     </Link> </span>
     
   </footer>

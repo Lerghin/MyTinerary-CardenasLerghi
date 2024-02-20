@@ -15,6 +15,7 @@ export function useFilters(){
   
  
   const filterProducts=(products)=> {
+    console.log("Productos antes del filtro:", products);
    return products.filter(product=> {
       return (
         product.price>= filters.minPrice &&

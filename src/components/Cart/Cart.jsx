@@ -41,6 +41,7 @@ function CartItem ({ thumbnail, price, title, quantity, addToCart }) {
 
 export function Cart () {
   const cartCheckboxId = useId()
+ 
   const { cart, clearCart, addToCart } = useCart()
   const [route, setRoute] = useState('cart');
   const navigate = useNavigate();
@@ -69,7 +70,7 @@ export function Cart () {
         <ul style={{ overflowY: "auto", WebkitOverflowScrolling: "touch" }} >
         {cart.map(product => (
             <CartItem
-              key={product.id}
+              key={product._id}
               addToCart={() => addToCart(product)}
            
               {...product}

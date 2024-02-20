@@ -20,7 +20,12 @@ function Comprar() {
 
   useEffect(() => {
     const storedCartData = JSON.parse(sessionStorage.getItem("cartData"));
-    setCartData(storedCartData); // Inicializa el estado del carrito con los datos almacenados
+    // Calcula el subtotal y el total para cada producto y actualiza el estado del carrito
+    const updatedCartData = storedCartData.map(product => ({
+        ...product,
+        subtotal: product.price * product.quantity
+    }));
+    setCartData(updatedCartData);
   }, []);
 
   const Pagar = () => {
@@ -49,6 +54,9 @@ function Comprar() {
                         </div>
                         <div>
                           -${product.price}
+                        </div>
+                        <div>
+                          <strong>Subtotal: ${product.subtotal}</strong>
                         </div>
                       </li>
                     </div>
@@ -80,13 +88,32 @@ function Comprar() {
           </Link>
       
         </div>
+        <aside>
+                <div><h5>Pago Movil:</h5> 
+                <h6>04264163305</h6>
+                <h6>C.I.21534303</h6>
+                <h6>Banco Mercantil</h6>
+                </div>
+                <div className="zelle"><h5>Zelle:</h5> 
+                <h6>barbanegrarestaurant@gmail.com</h6>
+                <h6>Titular: La barba es Mía</h6>
+                </div>
+                
+                <div><h5>binancePay:</h5> 
+                <h6>barbanegrarestaurant@gmail.com</h6>
+                <h6>depositar en USDT</h6>
+               
+                </div>
+
+
+        </aside>
       </section>
       <br /> <br />
       <section id="formulario" className={`formulario${mostrarFormulario ? "" : " oculto"}`}>
         {mostrarFormulario && (
           <>
             <h2>Formulario de Pago</h2>
-            <Formulario userId={userId} /> {/* Pasamos el userId al componente Formulario */}
+            <Formulario userId={userId} cartData={cartData}/> {/* Pasamos el userId al componente Formulario */}
           </>
         )}
       </section>
