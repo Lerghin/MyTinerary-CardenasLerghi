@@ -15,14 +15,14 @@ const Home = () => {
     axios.get('http://localhost:4000/api/products')
       .then(res => {
         setProducts(res.data.response);
-        console.log(res.data.response)
+        //console.log(res.data.response)
     
       })
       .catch(error => console.log(error));
   }, []);
 
   const filteredProducts = filterProducts(products);
-  console.log("Productos filtrados:", filteredProducts);
+  //console.log("Productos filtrados:", filteredProducts);
 
   return (
     <div className="app-layout">

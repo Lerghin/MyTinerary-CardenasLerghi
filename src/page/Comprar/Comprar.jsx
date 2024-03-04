@@ -53,7 +53,7 @@ function Comprar() {
                           <strong>Cantidad: {product.quantity}</strong> 
                         </div>
                         <div>
-                          -${product.price}
+                          ${product.price}
                         </div>
                         <div>
                           <strong>Subtotal: ${product.subtotal}</strong>
@@ -84,7 +84,7 @@ function Comprar() {
           </a>
     
           <Link type="button" className="btn btn-danger" to="/home">
-            Atras
+            Modificar
           </Link>
       
         </div>
